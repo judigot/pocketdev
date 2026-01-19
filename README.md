@@ -392,6 +392,86 @@ The user thinks in intent, not syntax
 
 ---
 
-14. One-Sentence Product Definition
+14. Ultimate MVP Test
+
+The single test that determines if Pocketdev is a successful MVP/POC:
+
+**Step 1:** Run this command in Pocketdev chat interface:
+```bash
+. <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")
+```
+
+**Step 2:** Run this command:
+```bash
+hi
+```
+
+**Success Criteria:**
+- Both commands execute successfully through chat interface
+- Output shows `Hello, root!` or `Hello, [username]!` with actual OS username
+- User never sees terminal prompt or direct shell access
+- All functionality works entirely through mobile chat interface
+- Terminal remains hidden (implementation detail only)
+
+**What This Validates:**
+- ✅ Real command execution on Ubuntu terminal
+- ✅ Network connectivity (curl access)
+- ✅ Shell scripting support (process substitution)
+- ✅ Environment loading and alias system
+- ✅ State persistence across commands
+- ✅ Complete chat → execution → results flow
+- ✅ Mobile-first interaction without terminal exposure
+
+**Failure = Not MVP:** If user cannot successfully run both commands and get the greeting through chat alone, the core premise fails.
+
+---
+
+15. MVP Golden Test Automation
+
+The ultimate MVP test is fully automatable using Detox:
+
+```typescript
+test('MVP golden test', async () => {
+  // Execute devrc loading
+  await element(by.id('chat-input')).typeText(
+    '. <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")'
+  );
+  await element(by.id('send-button')).tap();
+  await waitFor(element(by.id('command-success'))).toBeVisible({timeout: 30000});
+  
+  // Execute hi command
+  await element(by.id('chat-input')).typeText('hi');
+  await element(by.id('send-button')).tap();
+  await waitFor(element(by.text('Hello, ubuntu!'))).toBeVisible({timeout: 10000});
+  
+  // Verify terminal invisibility
+  await expect(element(by.id('terminal-prompt'))).not.toExist();
+  
+  // Verify state persistence
+  await device.reloadReactNative();
+  await expect(element(by.text('Hello, ubuntu!'))).toBeVisible();
+});
+```
+
+---
+
+16. MVP Testing Stack
+
+- **E2E**: Detox for React Native automation
+- **Component**: React Native Testing Library
+- **Unit**: Jest (built-in)
+
+---
+
+17. MVP Success Criteria
+
+- All automated tests pass
+- Golden test executes successfully  
+- Terminal never appears in UI
+- Complete workflow through mobile chat
+
+---
+
+18. One-Sentence Product Definition
 
 Pocketdev is a mobile-first, chat-driven control plane that lets you instruct agentic CLI tools to do real development work on a real machine—without living in a terminal.
