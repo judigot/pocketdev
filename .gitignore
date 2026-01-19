@@ -1,0 +1,20 @@
+# Production Deployment Configuration
+
+# Backend
+/backend
+!/logs
+.env
+*.log
+
+# Mobile
+/worktrees/*/node_modules/
+/worktrees/*/dist/
+/worktrees/*/.expo/
+/worktrees/*/mobile.log
+
+# System
+.DS_Store
+*.tmp
+*.cache
+
+node_modules/
