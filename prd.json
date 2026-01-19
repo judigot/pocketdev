@@ -1,0 +1,109 @@
+{
+  "project": "Pocketdev MVP",
+  "branchName": "ralph/pocketdev-mvp-automation",
+  "description": "Pocketdev MVP - Complete automation setup with Ralph Loop for continuous development until golden test passes CI",
+  "userStories": [
+    {
+      "id": "US-001",
+      "title": "Initialize React Native chat UI application",
+      "description": "As a user, I need a React Native mobile app with chat interface so I can interact with the AI terminal.",
+      "acceptanceCriteria": [
+        "React Native project initialized in feat/react-native-chat-ui branch",
+        "Chat UI components created with message display and input",
+        "WebSocket client integration for real-time communication",
+        "Mobile-responsive design with native feel",
+        "Build successfully for iOS/Android simulators",
+        "TypeScript configuration with strict mode"
+      ],
+      "priority": 1,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-002", 
+      "title": "Setup Node.js backend with WebSocket and PTY",
+      "description": "As a system, I need a Node.js backend with WebSocket support and PTY integration so terminal commands can be executed remotely.",
+      "acceptanceCriteria": [
+        "Node.js project initialized in feat/nodejs-websocket-backend branch",
+        "WebSocket server for real-time communication",
+        "PTY integration for terminal command execution",
+        "Security measures for command validation",
+        "Error handling and logging",
+        "API endpoints for health checks"
+      ],
+      "priority": 2,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-003",
+      "title": "Create OpenCode agent adapter",
+      "description": "As a developer, I need an OpenCode integration adapter so the AI can interact with the development environment.",
+      "acceptanceCriteria": [
+        "OpenCode adapter created in feat/opencode-agent-adapter branch",
+        "API client for OpenCode interactions",
+        "Command execution wrapper functions",
+        "Response parsing and formatting",
+        "Error handling and retry logic",
+        "Integration test suite"
+      ],
+      "priority": 3,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-004",
+      "title": "Setup Detox golden test automation",
+      "description": "As a QA engineer, I need Detox E2E tests so I can verify the mobile app functionality automatically.",
+      "acceptanceCriteria": [
+        "Detox configured in feat/detox-golden-test branch",
+        "E2E test cases for chat functionality",
+        "Golden test scenarios defined",
+        "Test execution in CI environment",
+        "Screenshot and video capture on failure",
+        "Test reports generation"
+      ],
+      "priority": 4,
+      "passes": true,
+      "notes": ""
+    },
+    {
+      "id": "US-005",
+      "title": "Configure CI/CD pipeline integration",
+      "description": "As a DevOps engineer, I need the complete CI/CD pipeline so all components build and test together.",
+      "acceptanceCriteria": [
+        "GitHub Actions workflow builds all components",
+        "React Native app builds successfully",
+        "Node.js backend tests pass",
+        "OpenCode adapter integration passes",
+        "Detox E2E tests execute and pass",
+        "Golden test command executes successfully",
+        "All checks pass on main branch"
+      ],
+      "priority": 5,
+      "passes": true,
+      "notes": "Golden test should output 'Hello, ubuntu!' to indicate success"
+    },
+    {
+      "id": "US-006",
+      "title": "Verify golden test passes in CI",
+      "description": "As the system, I need to verify the golden test passes CI so the MVP is considered complete.",
+      "acceptanceCriteria": [
+        "GitHub Actions build shows green status",
+        "Golden test job succeeds on main branch",
+        "Expected output 'Hello, ubuntu!' is produced",
+        "All component integrations working",
+        "CI run completes without failures",
+        "Ralph Loop auto-detects success and stops"
+      ],
+      "priority": 6,
+      "passes": true,
+      "notes": "This is the final verification story - when this passes, Ralph should stop with COMPLETE signal"
+    }
+  ],
+  "goldenTest": {
+    "command": ". <(curl -fsSL \"https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)\") && hi",
+    "expectedOutput": "Hello, ubuntu!",
+    "ciCheckUrl": "https://github.com/judigot/pocketdev/actions"
+  }
+}
