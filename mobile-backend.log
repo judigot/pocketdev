@@ -1,0 +1,88 @@
+🚀 Pocketdev Mobile Terminal Server running on port 3000
+📱 WebSocket server for mobile Termux clients on port 8080
+🔗 Mobile clients should connect to ws://localhost:8080
+💡 Commands execute ON MOBILE DEVICE in Termux environment
+📱 Mobile client connected
+📤 [mobile_1768859821653_i7foasl0t] Executing: whoami
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
+📤 [mobile_1768859821653_i7foasl0t] Executing: bash -c ". <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)")" && helloWorld
+📱 Mobile client disconnected: mobile_1768859821653_i7foasl0t
+✅ [mobile_1768859821653_i7foasl0t] Command completed with exit code: 0
