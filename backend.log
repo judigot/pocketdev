@@ -1,11 +1,4 @@
-
-> pocketdev-backend@1.0.0 start
-> node server.js
-
-🚀 Pocketdev backend running on port 3000
-📱 WebSocket server on port 8080
-🔗 Mobile app should connect to ws://localhost:8080
-Mobile client connected
-Mobile client disconnected
-Mobile client connected
-Mobile client disconnected
+🚀 Pocketdev Mobile Terminal Server running on port 3000
+📱 WebSocket server for mobile Termux clients on port 8080
+🔗 Mobile clients should connect to ws://localhost:8080
+💡 Commands execute ON MOBILE DEVICE in Termux environment
