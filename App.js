@@ -1,3 +1,4 @@
+// Simplified version for APK build
 import React, { useState, useEffect, useRef } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, KeyboardAvoidingView, Alert } from 'react-native';
 import { WebSocket } from 'react-native';
@@ -11,132 +12,47 @@ export default function App() {
   const ws = useRef(null);
 
   useEffect(() => {
-    // Check if we're running on Termux
-    const checkTermux = async () => {
-      try {
-        // Try to detect Termux environment
-        const fs = require('react-native-fs');
-        const termuxPath = '/data/data/com.termux/files';
-        await fs.access(termuxPath);
-        setIsTermux(true);
-        return true;
-      } catch (error) {
-        console.log('Not running on Termux, using WebSocket mode');
-        return false;
-      }
-    };
-
-    const initConnection = async () => {
-      try {
-        const isOnTermux = await checkTermux();
-        
-        if (isOnTermux) {
-          // Direct execution mode for Termux
-          setIsTermux(true);
-          console.log('📱 Running on Termux - direct execution mode');
-          return;
-        }
-
-        // WebSocket mode for non-Termux
-        const websocketUrl = __DEV__ 
-          ? 'ws://localhost:8080' 
-          : 'ws://your-production-server.com:8080';
-        ws.current = new WebSocket(websocketUrl);
-        
-        ws.current.onopen = () => {
-          setIsConnected(true);
-          console.log('📱 Connected to Pocketdev mobile server');
-        };
-        
-        ws.current.onmessage = (event) => {
-          try {
-            const data = JSON.parse(event.data);
-            setMessages(prev => [...prev, {
-              id: Date.now(),
-              type: data.type,
-              text: data.output || data.text,
-              command: data.command,
-              timestamp: new Date().toLocaleTimeString(),
-              sessionId: data.sessionId
-            }]);
-          } catch (error) {
-            console.error('WebSocket message error:', error);
-          }
-        };
-        
-        ws.current.onclose = () => {
-          setIsConnected(false);
-          console.log('📱 Disconnected from Pocketdev server');
-        };
-        
-        ws.current.onerror = (error) => {
-          console.error('WebSocket error:', error);
-          setIsConnected(false);
-        };
-
-        return () => {
-          if (ws.current) {
-            ws.current.close();
-          }
-        };
-      } catch (error) {
-        console.error('Connection failed:', error);
-        setIsConnected(false);
-      }
-    };
-
-    initConnection();
-  }, []);
-
-  const executeCommand = (commandText, isDirectTermux = false) => {
-    if (isDirectTermux) {
-      // Execute directly on Termux using react-native-fs
-      executeDirectTermuxCommand(commandText);
-    } else {
-      // Send via WebSocket
-      sendMessage(commandText);
-    }
-  };
-
-  const executeDirectTermuxCommand = async (commandText) => {
+    // WebSocket connection for testing
     try {
-      const fs = require('react-native-fs');
+      const websocketUrl = 'ws://3.141.4.43:8080';
+      ws.current = new WebSocket(websocketUrl);
       
-      // Simple Termux command execution simulation
-      let result = '';
+      ws.current.onopen = () => {
+        setIsConnected(true);
+        console.log('📱 Connected to Pocketdev backend');
+      };
       
-      if (commandText.includes('helloWorld')) {
-        result = 'Hello, termux!';
-      } else if (commandText.startsWith('pwd')) {
-        result = '/data/data/com.termux/files/home';
-      } else if (commandText.startsWith('ls')) {
-        result = 'Documents  Downloads  Pictures  Music';
-      } else if (commandText.startsWith('whoami')) {
-        result = 'termux';
-      } else {
-        result = `Command executed: ${commandText}`;
-      }
+      ws.current.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          setMessages(prev => [...prev, {
+            id: Date.now(),
+            type: data.type,
+            text: data.output || data.text,
+            command: data.command,
+            timestamp: new Date().toLocaleTimeString(),
+            sessionId: data.sessionId
+          }]);
+        } catch (error) {
+          console.error('WebSocket message error:', error);
+        }
+      };
       
-      setMessages(prev => [...prev, {
-        id: Date.now(),
-        type: 'output',
-        text: result,
-        command: commandText,
-        timestamp: new Date().toLocaleTimeString(),
-        sessionId: 'direct-termux'
-      }]);
+      ws.current.onclose = () => {
+        setIsConnected(false);
+        console.log('📱 Disconnected from Pocketdev server');
+      };
       
+      ws.current.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        setIsConnected(false);
+      };
+
     } catch (error) {
-      setMessages(prev => [...prev, {
-        id: Date.now(),
-        type: 'error',
-        text: `Direct execution error: ${error.message}`,
-        command: commandText,
-        timestamp: new Date().toLocaleTimeString(),
-        sessionId: 'direct-termux'
-      }]);
+      console.error('Connection failed:', error);
+      setIsConnected(false);
     }
-  };
+  }, []);
 
   const sendMessage = () => {
     if (inputText.trim() && ws.current && isConnected) {
@@ -154,22 +70,18 @@ export default function App() {
   const renderMessage = (message) => {
     const isCommand = message.type === 'output' || message.type === 'complete';
     const isError = message.type === 'error';
-    const isLocal = message.sessionId === 'direct-termux';
     
     return (
       <View key={message.id} style={[styles.messageContainer, isError && styles.errorContainer]}>
         <Text style={[styles.timestamp, isError && styles.errorText]}>
           {message.timestamp}
-          {isLocal && <Text style={styles.localIndicator}> [LOCAL]</Text>}
-          {!isLocal && <Text style={styles.remoteIndicator}> [REMOTE]</Text>}
+          <Text style={styles.remoteIndicator}> [SERVER]</Text>
         </Text>
         
         {isCommand && (
           <View style={styles.commandContainer}>
             <Text style={styles.commandLabel}>Command:</Text>
             <Text style={styles.commandText}>{message.command}</Text>
-            {isLocal && <Text style={styles.termuxIndicator}> [TERMUX]</Text>}
-            {!isLocal && <Text style={styles.serverIndicator}> [SERVER]</Text>}
           </View>
         )}
         
@@ -186,9 +98,9 @@ export default function App() {
         <Text style={styles.title}>Pocketdev Mobile Terminal</Text>
         <View style={[styles.statusIndicator, isConnected ? styles.connected : styles.disconnected]} />
         <Text style={styles.statusText}>
-          {isConnected ? `${isTermux ? 'Termux' : 'Remote'}` : 'Disconnected'}
+          {isConnected ? 'Connected' : 'Disconnected'}
         </Text>
-        {isTermux && <Text style={styles.termuxBadge}>TERMUX</Text>}
+        <Text style={styles.termuxBadge}>DEMO</Text>
       </View>
       
       <ScrollView style={styles.messagesContainer}>
@@ -200,21 +112,21 @@ export default function App() {
           style={styles.textInput}
           value={inputText}
           onChangeText={setInputText}
-          placeholder={isTermux ? "Enter Termux command..." : "Enter remote command..."}
+          placeholder="Enter command..."
           multiline
           onSubmitEditing={({ nativeEvent: { text } }) => {
             const command = text;
             if (command.trim()) {
-              executeCommand(command.trim(), isTermux);
+              sendMessage();
             }
           }}
         />
         <TouchableOpacity 
           style={[styles.sendButton, inputText.trim() && styles.sendButtonActive]} 
-          onPress={() => executeCommand(inputText.trim(), isTermux)}
+          onPress={sendMessage}
           disabled={!inputText.trim()}
         >
-          <Text style={styles.sendButtonText}>{isTermux ? 'Execute' : 'Send'}</Text>
+          <Text style={styles.sendButtonText}>Send</Text>
         </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
@@ -286,16 +198,6 @@ const styles = StyleSheet.create({
     color: '#888',
     marginBottom: 5,
   },
-  localIndicator: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: '#4CAF50',
-    backgroundColor: '#E8F5E8',
-    paddingHorizontal: 4,
-    paddingVertical: 1,
-    borderRadius: 3,
-    marginRight: 5,
-  },
   remoteIndicator: {
     fontSize: 10,
     fontWeight: 'bold',
@@ -305,22 +207,6 @@ const styles = StyleSheet.create({
     paddingVertical: 1,
     borderRadius: 3,
     marginRight: 5,
-  },
-  serverIndicator: {
-    fontSize: 10,
-    fontWeight: 'bold',
-    color: '#FF9800',
-    backgroundColor: '#FFF3E0',
-    paddingHorizontal: 4,
-    paddingVertical: 1,
-    borderRadius: 3,
-    marginRight: 5,
-  },
-  termuxIndicator: {
-    fontSize: 11,
-    fontWeight: 'bold',
-    color: '#FF5722',
-    marginBottom: 4,
   },
   commandContainer: {
     backgroundColor: '#f0f0f0',
