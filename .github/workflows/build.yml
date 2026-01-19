@@ -1,0 +1,178 @@
+name: Pocketdev MVP Build
+
+on:
+  push:
+    branches: [ main, feat/* ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-status:
+    runs-on: ubuntu-latest
+    name: Check Build Status
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        
+    - name: Check worktree status
+      run: |
+        git worktree list
+        echo "## Worktree Status" >> $GITHUB_STEP_SUMMARY
+        git worktree list --porcelain | grep -E "^worktree " | cut -d' ' -f2 | grep ".worktrees" | while read worktree; do
+          worktree_name=$(basename "$worktree")
+          echo "### $worktree_name" >> $GITHUB_STEP_SUMMARY
+          
+          if [ -f "$worktree/.agent-task-context/.state/TASK_STATUS.unclaimed" ]; then
+            echo "🟡 Status: Unclaimed" >> $GITHUB_STEP_SUMMARY
+          elif [ -f "$worktree/.agent-task-context/.state/TASK_STATUS.claimed" ]; then
+            echo "🔵 Status: In Progress" >> $GITHUB_STEP_SUMMARY
+          elif [ -f "$worktree/.agent-task-context/.state/TASK_STATUS.done" ]; then
+            echo "✅ Status: Completed" >> $GITHUB_STEP_SUMMARY
+          elif [ -f "$worktree/.agent-task-context/.state/TASK_STATUS.paused" ]; then
+            echo "⏸️ Status: Paused" >> $GITHUB_STEP_SUMMARY
+          elif [ -f "$worktree/.agent-task-context/.state/TASK_STATUS.abandoned" ]; then
+            echo "❌ Status: Abandoned" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❓ Status: Unknown" >> $GITHUB_STEP_SUMMARY
+          fi
+          
+          cd "$worktree" 2>/dev/null || continue
+          echo "📝 Latest: $(git log -1 --oneline --no-decorate)" >> $GITHUB_STEP_SUMMARY
+          cd - > /dev/null
+        done
+
+  react-native-check:
+    runs-on: ubuntu-latest
+    name: React Native App Check
+    if: github.event.ref == 'refs/heads/feat/react-native-chat-ui'
+    
+    steps:
+    - name: Checkout React Native worktree
+      uses: actions/checkout@v4
+      with:
+        ref: feat/react-native-chat-ui
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Check if package.json exists
+      run: |
+        if [ -f "package.json" ]; then
+          echo "✅ package.json found"
+          cat package.json | jq '.dependencies'
+        else
+          echo "❌ package.json not found - React Native app not initialized"
+        fi
+
+  nodejs-check:
+    runs-on: ubuntu-latest
+    name: Node.js Backend Check
+    if: github.event.ref == 'refs/heads/feat/nodejs-websocket-backend'
+    
+    steps:
+    - name: Checkout Node.js worktree
+      uses: actions/checkout@v4
+      with:
+        ref: feat/nodejs-websocket-backend
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Check if package.json exists
+      run: |
+        if [ -f "package.json" ]; then
+          echo "✅ package.json found"
+          cat package.json | jq '.dependencies'
+        else
+          echo "❌ package.json not found - Node.js backend not initialized"
+        fi
+
+  opencode-adapter-check:
+    runs-on: ubuntu-latest
+    name: OpenCode Adapter Check
+    if: github.event.ref == 'refs/heads/feat/opencode-agent-adapter'
+    
+    steps:
+    - name: Checkout OpenCode adapter worktree
+      uses: actions/checkout@v4
+      with:
+        ref: feat/opencode-agent-adapter
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Check if package.json exists
+      run: |
+        if [ -f "package.json" ]; then
+          echo "✅ package.json found"
+          cat package.json | jq '.dependencies'
+        else
+          echo "❌ package.json not found - OpenCode adapter not initialized"
+        fi
+
+  detox-check:
+    runs-on: ubuntu-latest
+    name: Detox E2E Tests Check
+    if: github.event.ref == 'refs/heads/feat/detox-golden-test'
+    
+    steps:
+    - name: Checkout Detox worktree
+      uses: actions/checkout@v4
+      with:
+        ref: feat/detox-golden-test
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        
+    - name: Check if package.json exists
+      run: |
+        if [ -f "package.json" ]; then
+          echo "✅ package.json found"
+          cat package.json | jq '.dependencies'
+        else
+          echo "❌ package.json not found - Detox tests not initialized"
+        fi
+
+  golden-test:
+    runs-on: ubuntu-latest
+    name: Golden Test Execution
+    needs: [react-native-check, nodejs-check, opencode-adapter-check, detox-check]
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout main
+      uses: actions/checkout@v4
+      with:
+        ref: main
+        
+    - name: Setup Environment
+      run: |
+        echo "🎯 Running Golden Test for Pocketdev MVP"
+        echo "Command: . <(curl -fsSL \"https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)\") && hi"
+        echo "Expected: Hello, ubuntu!"
+        
+    - name: Test Golden Command
+      run: |
+        # Execute the golden test command
+        if eval '. <(curl -fsSL "https://raw.githubusercontent.com/judigot/user/main/load-devrc.sh?cachebustkey=$(date +%s)") && hi' | grep -q "Hello, ubuntu!"; then
+          echo "✅ Golden Test PASSED"
+          echo "## 🎉 Golden Test Result: PASSED" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Command executed successfully" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Received expected output: 'Hello, ubuntu!'" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ Golden Test FAILED"
+          echo "## ❌ Golden Test Result: FAILED" >> $GITHUB_STEP_SUMMARY
+          echo "❌ Did not receive expected output" >> $GITHUB_STEP_SUMMARY
+          exit 1
+        fi

@@ -1,0 +1,30 @@
+{
+  "baseDir": ".worktrees",
+  "baseBranch": "main",
+  "worktrees": [
+    {
+      "id": "react-native-app",
+      "branch": "feat/react-native-chat-ui",
+      "dir": "react-native-app",
+      "status": "unclaimed"
+    },
+    {
+      "id": "nodejs-backend",
+      "branch": "feat/nodejs-websocket-backend",
+      "dir": "nodejs-backend", 
+      "status": "unclaimed"
+    },
+    {
+      "id": "opencode-adapter",
+      "branch": "feat/opencode-agent-adapter",
+      "dir": "opencode-adapter",
+      "status": "unclaimed"
+    },
+    {
+      "id": "detox-e2e-tests",
+      "branch": "feat/detox-golden-test",
+      "dir": "detox-e2e-tests",
+      "status": "unclaimed"
+    }
+  ]
+}
