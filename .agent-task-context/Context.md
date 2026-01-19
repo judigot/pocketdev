@@ -1,36 +1,78 @@
-# Context: <branch-name>
+# Context: feat/react-native-chat-ui
 
 ## Goal
-<Clear, one-sentence objective explaining what needs to be accomplished>
+Build React Native mobile app with chat UI and WebSocket client for Pocketdev MVP
 
 ## Background
-<Why this task exists, what problem it solves, and any relevant context>
+This is the mobile frontend component that users will interact with. It needs a clean chat interface and real-time WebSocket connectivity to the backend.
 
 ## Scope
 **Touch only:**
-- <explicit list of files/directories that CAN be modified>
+- React Native app files in this worktree
+- package.json and dependencies
+- src/ directory with components
+- App.tsx and main entry points
 
 **Do not touch:**
-- <explicit list of files/directories that MUST NOT be modified>
+- Backend code (other worktrees)
+- OpenCode adapter (separate worktree)
+- E2E tests (separate worktree)
 
 **Dependencies:**
-- <related systems, files, or components to be aware of>
+- WebSocket backend from nodejs-backend worktree
+- OpenCode integration from opencode-adapter worktree
 
 ## Step-by-Step Instructions
-<Detailed, actionable steps written for a junior developer>
+1. Initialize React Native project with Expo (for faster setup)
+2. Set up TypeScript configuration
+3. Install WebSocket client library
+4. Create chat UI components:
+   - MessageList component
+   - MessageInput component
+   - ChatHeader component
+   - Main Chat screen
+5. Implement WebSocket client service
+6. Connect UI to WebSocket service
+7. Add basic styling for chat interface
+8. Test connection with mock WebSocket server
 
 ## Definition of Done
-- <clear checklist item 1>
-- <clear checklist item 2>
-- <clear checklist item 3>
+- React Native app builds successfully
+- Chat UI renders properly with message list and input
+- WebSocket client connects and can send/receive messages
+- Basic styling looks clean and mobile-friendly
+- App can be run on iOS/Android simulator
 
 ## Examples
-<Code examples, patterns to follow, or reference implementations>
+```typescript
+// WebSocket service structure
+class WebSocketService {
+  connect(url: string): void
+  disconnect(): void
+  sendMessage(message: string): void
+  onMessage(callback: (message: string) => void): void
+}
+
+// Message component structure
+interface Message {
+  id: string
+  text: string
+  timestamp: Date
+  isUser: boolean
+}
+```
 
 ## Troubleshooting
-**Common Issue 1:**
-- Problem: <description>
-- Solution: <how to fix it>
+**Common Issue 1: Metro bundler conflicts**
+- Problem: Multiple Metro instances running
+- Solution: Ensure only one Metro process runs at a time
+
+**Common Issue 2: WebSocket connection fails**
+- Problem: Backend not ready or wrong URL
+- Solution: Check backend status and WebSocket endpoint URL
 
 ## Notes / Decisions
-- <important decisions made during implementation>
+- Using Expo for rapid development and easier setup
+- WebSocket over HTTP for real-time communication
+- TypeScript for type safety
+- Focus on MVP functionality - no complex features yet
