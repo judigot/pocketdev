@@ -38,7 +38,10 @@ export default function App() {
         }
 
         // WebSocket mode for non-Termux
-        ws.current = new WebSocket('ws://localhost:8080');
+        const websocketUrl = __DEV__ 
+          ? 'ws://localhost:8080' 
+          : 'ws://your-production-server.com:8080';
+        ws.current = new WebSocket(websocketUrl);
         
         ws.current.onopen = () => {
           setIsConnected(true);
